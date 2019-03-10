@@ -1,0 +1,38 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`had valid snapshop 1`] = `
+<div
+  className="App"
+>
+  <button
+    onClick={[Function]}
+    type="button"
+  >
+    Test Button1
+  </button>
+  <div
+    className="Search2"
+  >
+    <form
+      onSubmit={[Function]}
+    >
+      <b>
+        Search Func
+      </b>
+      <input
+        onChange={[Function]}
+        type="text"
+        value="redux"
+      />
+      <button
+        type="submit"
+      >
+        Search
+      </button>
+    </form>
+  </div>
+  <div>
+    Loading ...
+  </div>
+</div>
+`;

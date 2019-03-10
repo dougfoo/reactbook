@@ -6,6 +6,9 @@ import Table from './Table';
 var DEFAULT_QUERY = "redux"; 
 var url = "https://hn.algolia.com/api/v1/search?query=";  // working
 
+const Loading = () => 
+  <div>Loading ...</div>
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -13,7 +16,8 @@ class App extends Component {
       results: null,
       searchKey: '',
       searchTerm: DEFAULT_QUERY,
-      error: null
+      error: null,
+      isLoading: false,
     }
     // bindings
     this.setSearchResults = this.setSearchResults.bind(this);
@@ -33,7 +37,8 @@ class App extends Component {
       results: {
         ...results,
         [searchKey]: result
-      }
+      },
+      isLoading: false,
     });
   }
 
@@ -47,6 +52,7 @@ class App extends Component {
     // fetch(`${url}${searchTerm}`).then(response => response.json()).
     //    then(result => this.setSearchResults(result)).
     //    catch(error => this.setState({error}));
+    this.setState({ isLoading: true });
     axios(`${url}${searchTerm}`).then(result => this.setSearchResults(result.data)).
       catch(error => {       
         console.log(error);
@@ -79,7 +85,7 @@ class App extends Component {
   }
 
   render() {
-    const { searchTerm, results, searchKey, error } = this.state;
+    const { searchTerm, results, searchKey, error, isLoading, } = this.state;
 
     if (error) {
       console.log('error'+error);
@@ -90,8 +96,9 @@ class App extends Component {
         <div className="App">
           <button onClick={() => this.onMyClick()} type='button'>Test Button1</button>
           <SearchF value={searchTerm} onChange={this.onSearchChange} onSubmit={this.onSubmitSearch}>
-            Search
+            Searchs
           </SearchF>
+          { isLoading ? <Loading/> : '' }
           {
             results && results[searchKey] &&  
             <Table list={results[searchKey].hits} />
