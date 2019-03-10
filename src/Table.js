@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 // function isSearched(searchTerm) {
 //     return function (item) {
@@ -21,4 +22,8 @@ class Table extends Component {
         );
     }
 }
+
+// Table.PropTypes = {
+//     list: PropTypes.array,
+// }
 export default Table;
